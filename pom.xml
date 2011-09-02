@@ -1,0 +1,194 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                     http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<!-- Super-POM for Spring Security book samples. This POM contains all the 
+		dependencies and versions for all the chapters in the book. Please make sure 
+		you are using Maven 3 with this POM, available at http://maven.apache.org/. 
+		To build, simply run "mvn package" in this root directory. This should download 
+		all required dependencies and build WAR files for each chapter. To deploy 
+		to a running Tomcat instance, simply run "mvn tomcat:deploy" in this root 
+		directory. You may execute these maven targets in subdirectories if you don't 
+		wish to deploy everything. -->
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.jbcppets.webapp</groupId>
+	<artifactId>samples</artifactId>
+	<version>1.0.1</version>
+	<packaging>pom</packaging>
+	<name>Spring Security Book Sample Applications</name>
+	<url>http://www.springsecuritybook.com</url>
+
+	<contributors>
+		<contributor>
+			<name>Peter Mularien</name>
+			<email>info@springsecuritybook.com</email>
+		</contributor>
+	</contributors>
+	<description>
+		This POM will build all examples from the book Spring Security 3, by Peter Mularien. Note that
+		the version of Spring Security and Spring Framework used here differ slightly from the shipping
+		version of the book, simply to keep up with changing times and enhancements to the framework.
+		
+		Please review Errata and other updates at the book's website (http://www.springsecuritybook.com/).
+		
+		I hope you find this build useful, please send me feedback if you have changes! -- Peter
+	</description>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-acl</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-aspects</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-cas-client</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-core</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-ldap</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-openid</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-taglibs</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>org.springframework.spring-library</artifactId>
+				<type>libd</type>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			
+			<!-- Deployment-time Dependencies -->
+			<dependency>
+			    <groupId>org.hsqldb</groupId>
+			    <artifactId>hsqldb</artifactId>
+			    <version>1.8.0.10</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sf.ehcache</groupId>
+				<artifactId>ehcache</artifactId>
+				<type>pom</type>
+				<version>2.3.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.6.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>1.6.1</version>
+			</dependency>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>1.2.16</version>
+			</dependency>
+
+			<!-- Other Java or JSR dependencies used in various chapters -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>1.2</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.annotation</groupId>
+				<artifactId>jsr250-api</artifactId>
+				<version>1.0</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<properties>
+		<spring.version>3.0.5.RELEASE</spring.version>
+		<spring.security.version>3.0.5.RELEASE</spring.security.version>
+		<junit.version>3.8.1</junit.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.0.2</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<version>1.0-beta-1</version>
+				<configuration>
+					<!-- Change this depending on your Tomcat installation parameters -->
+					<url>http://localhost:8080/manager</url>
+					<server>admin</server>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<modules>
+		<module>chapter2</module>
+		<module>chapter3</module>
+		<module>chapter4</module>
+		<module>chapter5</module>
+		<module>chapter6</module>
+		<module>chapter7</module>
+		<module>chapter8</module>
+		<module>chapter9</module>
+		<module>chapter10</module>
+		<module>chapter11</module>
+		<module>chapter12</module>
+	</modules>
+
+</project>
